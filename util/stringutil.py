@@ -1,4 +1,5 @@
 from util.maps import CITY_MAP
+import os
 # import speech_recognition
 
 def levenshtein(s1, s2):
@@ -82,4 +83,11 @@ def get_pretty_exchange(ugly, currency):
     result += "Продажа: " + ugly["Selling rate"] + ", динамика: {0:.2f}".format(ugly["Selling rate dynamic"]) + ".\n"
     result += "Покупка: " + ugly["Buying rate"] + ", динамика: {0:.2f}".format(ugly["Buying rate dynamic"]) + ".\n"
     result += "Дата последнего изменения: " + ugly["Last update"].strftime("21/11/06 16:30", "%d/%m/%y %H:%M") + ".\n"
+    return result
+
+
+def get_text_from_texts(filename):
+    path = os.path.join("./texts", filename)
+    with open(path, "r") as file:
+        result = file.read()
     return result

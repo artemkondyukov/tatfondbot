@@ -1,4 +1,4 @@
-from util.stringutil import levenshtein, get_pretty_exchange, get_pretty_offices, get_pretty_atms
+from util.stringutil import levenshtein, get_pretty_exchange, get_pretty_offices, get_pretty_atms, get_text_from_texts
 from util.requestutil import *
 from util.maps import *
 from util.botutil import *
@@ -31,7 +31,7 @@ class QueryHandler:
             if levenshtein(token, key) < self.LEVENSHTEIN_THRESHOLD:
                 result.append((key, levenshtein(token, key)))
 
-        min_distance = 10 ** 9
+        min_distance = 10e9
         closest = None
         for r in result:
             if r[1] < min_distance:
@@ -50,6 +50,8 @@ class QueryHandler:
         query_tokens = query.split(" ")
         self.request_info = dict()
         for token in query_tokens:
+            if token in BANK_SERVICES:
+                return get_text_from_texts(BANK_SERVICES[token]), ""
             if token in CURRENCY_INDEX:
                 self.request_info["currency"] = CURRENCY_INDEX[token]
             else:

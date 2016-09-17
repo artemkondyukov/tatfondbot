@@ -64,6 +64,8 @@ CURRENCY_INDEX = {
     "xau": "XAU",
     "золото": "XAU",
     "злат": "XAU",
+    "gold": "XAU",
+    "голд": "XAU",
 
     "pd": "XPD",
     "xpd": "XPD",
@@ -98,4 +100,45 @@ ACTION_INDEX = {
 
     "курс": "currency",
     "валюта": "currency",
+}
+
+BANK_SERVICES = {
+    "ипотека": "mortgage.txt",
+    "ипотеку": "mortgage.txt",
+    "ипотеке": "mortgage.txt",
+    "ипотекой": "mortgage.txt",
+    "ипотеках": "mortgage.txt",
+    "ипотек": "mortgage.txt",
+    "ипотекам": "mortgage.txt",
+
+    "вклад": "deposit.txt",
+    "вклада": "deposit.txt",
+    "вкладом": "deposit.txt",
+    "вкладов": "deposit.txt",
+    "вклады": "deposit.txt",
+    "вкладами": "deposit.txt",
+    "вкладах": "deposit.txt",
+
+    "кредит": "credit.txt",
+    "кредита": "credit.txt",
+    "кредитом": "credit.txt",
+    "кредиты": "credit.txt",
+    "кредитах": "credit.txt",
+    "кредитов": "credit.txt",
+
+    "автокредит": "autocredit.txt",
+    "автокредита": "autocredit.txt",
+    "автокредитом": "autocredit.txt",
+    "автокредиты": "autocredit.txt",
+    "автокредитах": "autocredit.txt",
+    "автокредитов": "autocredit.txt",
+    "авто": "autocredit.txt",
+    "автомобиль": "autocredit.txt",
+    "автомобиля": "autocredit.txt",
+
+    "бизнес": "business.txt",
+    "бизнеса": "business.txt",
+    "бизнесом": "business.txt",
+    "бизнесов": "business.txt",
+    "бизнесам": "business.txt",
 }
