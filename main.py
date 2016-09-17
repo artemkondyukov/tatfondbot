@@ -5,7 +5,6 @@ with open("./sensitive") as f:
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
-
 @bot.message_handler(content_types=["text", "location"])
 def repeat_all_messages(message):
     if message.content_type == "location":
