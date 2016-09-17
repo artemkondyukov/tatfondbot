@@ -1,36 +1,14 @@
-import signal
-from logging import Handler
-
-import requests
-from pip.utils import logging
-import sys
-from tornado import web, ioloop
+import telebot
 
 with open("./sensitive") as f:
     BOT_TOKEN = f.readline()
 
-
-def signal_term_handler(signal, frame):
-    print('got SIGTERM/SIGINT')
-    sys.exit(0)
+bot = telebot.TeleBot(BOT_TOKEN)
 
 
-URL = "https://api.telegram.org/bot%s/" % BOT_TOKEN
-MyURL = "localhost/hook"
-
-api = requests.Session()
-application = web.Application([
-    (r"/", Handler),
-])
+@bot.message_handler(content_types=["text"])
+def repeat_all_messages(message):
+    bot.send_message(message.chat.id, message.text)
 
 if __name__ == '__main__':
-    signal.signal(signal.SIGTERM, signal_term_handler)
-    try:
-        set_hook = api.get(URL + "setWebhook?url=%s" % MyURL)
-        if set_hook.status_code != 200:
-            logging.error("Can't set hook: %s. Quit." % set_hook.text)
-            exit(1)
-        application.listen(8888)
-        ioloop.IOLoop.current().start()
-    except KeyboardInterrupt:
-        signal_term_handler(signal.SIGTERM, None)
+    bot.polling(none_stop=True)
