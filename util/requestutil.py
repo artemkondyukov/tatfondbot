@@ -1,7 +1,8 @@
 import requests
 import datetime
 import util.stringutil
-from util.botutil import CITY_URL, CITY_MAP, EXCHANGE_RATE_URL
+from util.botutil import CITY_URL, EXCHANGE_RATE_URL
+from util.maps import CITY_MAP
 
 import util.botutil
 

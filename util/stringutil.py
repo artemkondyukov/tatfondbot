@@ -1,4 +1,4 @@
-from util.botutil import CITY_MAP
+from util.maps import CITY_MAP
 
 
 def levenshtein(s1, s2):
