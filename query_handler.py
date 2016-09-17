@@ -1,4 +1,4 @@
-from util.stringutil import levenshtein
+from util.stringutil import levenshtein, get_pretty_exchange, get_pretty_offices, get_pretty_atms
 from util.requestutil import *
 from util.maps import *
 from util.botutil import *
@@ -99,14 +99,19 @@ class QueryHandler:
     def currency_info(self, term):
         # Ask for the currency of interest (or get from query) and return the value
         if self.request_info["currency"] is None:
-            return str(get_exchange_rate_dynamics("USD"))
+            return str(get_pretty_exchange(get_exchange_rate_dynamics("USD"), "USD"))
         else:
-            return str(get_exchange_rate_dynamics(term))
+            return str(get_pretty_exchange(get_exchange_rate_dynamics(term), term))
 
     def process_pending(self):
         result = ""
         for p in self.response["pending"]:
             result += p[1](None)
+        if result != "":
+            if p[1] == self.find_offices:
+                result = get_pretty_offices(result)
+            elif p[1] == self.find_atms:
+                result = get_pretty_atms(result)
         self.response["pending"] = set()
         return result
 
