@@ -45,6 +45,7 @@ CURRENCY_INDEX = {
     "даллар": "USD",
     "dollar": "USD",
     "бакс": "USD",
+    "бач": "USD",
     "усд": "USD",
     "юсд": "USD",
     "usd": "USD",
