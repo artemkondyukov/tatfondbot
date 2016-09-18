@@ -69,9 +69,9 @@ def get_pretty_atms(ugly):
         result += str(i) + ". Адрес: " + \
                   ug["Address"] + ". Тип банкомата: " + \
                   ug["Title"] + ". "
-        if "TIMEALL" not in ug:
+        if "TIMEALL" in ug:
             result += "Время работы: круглосуточно. "
-        elif ug["TIME"]:
+        elif "TIME" in ug:
             result += "Время работы: " + ug["TIME"] + ". "
         result += "\n"
     return result
