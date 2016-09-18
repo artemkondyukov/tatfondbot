@@ -1,7 +1,7 @@
 import os
 import telebot
 import speech.recognizer as rc
-from pocketsphinx import Pocketsphinx
+from pocketsphinx import Pocketsphinx, AudioFile, get_model_path
 
 from query_handler import QueryHandler
 
@@ -9,18 +9,29 @@ with open("./sensitive") as f:
     BOT_TOKEN = f.readline()
 
 MODEL_DIR = "./model/"
+# MODEL_DIR = get_model_path()
 
 bot = telebot.TeleBot(BOT_TOKEN)
 # bot.polling(none_stop=True)
 handler = QueryHandler()
 
 config = {
+            'sampling_rate': 8000,
             'verbose': True,
-            'hmm': os.path.join(MODEL_DIR, 'ru-RU'),
-            'lm': os.path.join(MODEL_DIR, 'ru-RU/ru.lm'),
-            'dict': os.path.join(MODEL_DIR, 'ru-RU/ru.dic')
+            'hmm': os.path.join(MODEL_DIR, 'zero/zero_ru.cd_cont_4000/'),
+            'lm': os.path.join(MODEL_DIR, 'zero/ru.lm'),
+            'dict': os.path.join(MODEL_DIR, 'zero/ru.dic')
         }
-sphinx = Pocketsphinx(**config)
+# print(os.path.join(MODEL_DIR, 'en-us'))
+# print(os.path.join(MODEL_DIR, 'cmudict-en-us.dict'))
+# config = {
+#             'verbose': True,
+#             'hmm': os.path.join(MODEL_DIR, 'en-us'),
+#             'lm': os.path.join(MODEL_DIR, 'en-us.lm.bin'),
+#             'dict': os.path.join(MODEL_DIR, 'cmudict-en-us.dict')
+#         }
+# sphinx = AudioFile(**config)
+sphinx = []
 print("FUCK YOU")
 
 
