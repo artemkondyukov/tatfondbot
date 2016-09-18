@@ -137,6 +137,7 @@ BANK_SERVICES = {
     "автомобиля": "autocredit.txt",
 
     "бизнес": "business.txt",
+    "бизнесе": "business.txt",
     "бизнеса": "business.txt",
     "бизнесом": "business.txt",
     "бизнесов": "business.txt",

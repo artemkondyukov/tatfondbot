@@ -54,9 +54,9 @@ def get_pretty_offices(ugly):
     result = "Ближайшие к вам отделения:\n"
     for i, ug in enumerate(ugly):
         result += str(i) + ". Адрес: " + \
-            + ug["Address"] + ". Время работы для физических лиц: " + \
-            + ug["TIMEFIZ"] + "; Время работы для юридических лиц: " + \
-            + ug["TIMEUR"] + ". "
+            ug["Address"] + ". Время работы для физических лиц: " + \
+            ug["TIMEFIZ"] + "; Время работы для юридических лиц: " + \
+            ug["TIMEUR"] + ". "
         if ug["PHONE"] != "":
             result += "Телефон: " + ug["PHONE"] + "."
         result += "\n"
@@ -67,9 +67,9 @@ def get_pretty_atms(ugly):
     result = "Ближайшие к вам банкоматы:\n"
     for i, ug in enumerate(ugly):
         result += str(i) + ". Адрес: " + \
-                  + ug["Address"] + ". Тип банкомата: " + \
-                  + ug["Title"] + ". "
-        if ug["TIMEALL"]:
+                  ug["Address"] + ". Тип банкомата: " + \
+                  ug["Title"] + ". "
+        if "TIMEALL" not in ug:
             result += "Время работы: круглосуточно. "
         elif ug["TIME"]:
             result += "Время работы: " + ug["TIME"] + ". "
@@ -79,10 +79,10 @@ def get_pretty_atms(ugly):
 
 def get_pretty_exchange(ugly, currency):
     result = "Валютная пара: " + currency + "/RUB. "
-    result += "Курс ЦБ: " + ugly["Bank exchange rate"] + ".\n"
-    result += "Продажа: " + ugly["Selling rate"] + ", динамика: {0:.2f}".format(ugly["Selling rate dynamic"]) + ".\n"
-    result += "Покупка: " + ugly["Buying rate"] + ", динамика: {0:.2f}".format(ugly["Buying rate dynamic"]) + ".\n"
-    result += "Дата последнего изменения: " + ugly["Last update"].strftime("21/11/06 16:30", "%d/%m/%y %H:%M") + ".\n"
+    result += "Курс ЦБ: " + str(ugly["Bank exchange rate"]) + ".\n"
+    result += "Продажа: " + str(ugly["Selling rate"]) + ", динамика: {0:.2f}".format(ugly["Selling rate dynamic"]) + ".\n"
+    result += "Покупка: " + str(ugly["Buying rate"]) + ", динамика: {0:.2f}".format(ugly["Buying rate dynamic"]) + ".\n"
+    result += "Дата последнего изменения: " + ugly["Last update:"].strftime("%d/%m/%y %H:%M") + ".\n"
     return result
 
 

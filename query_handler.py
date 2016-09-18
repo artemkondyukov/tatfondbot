@@ -1,3 +1,4 @@
+import os
 from util.stringutil import levenshtein, get_pretty_exchange, get_pretty_offices, get_pretty_atms, get_text_from_texts
 from util.requestutil import *
 from util.maps import *
@@ -20,7 +21,7 @@ class QueryHandler:
         self.info_required_message = {
             "location": "Пришлите, пожалуйста, Ваше местоположение"
         }
-        self.LEVENSHTEIN_THRESHOLD = 3
+        self.LEVENSHTEIN_THRESHOLD = 1
         self.response = {"pending": set()}
         self.required_info = dict()
         self.request_info = None
@@ -28,7 +29,7 @@ class QueryHandler:
     def get_map_key_fuzzy(self, token, map):
         result = []
         for key in map:
-            if levenshtein(token, key) < self.LEVENSHTEIN_THRESHOLD:
+            if levenshtein(token, key) <= self.LEVENSHTEIN_THRESHOLD:
                 result.append((key, levenshtein(token, key)))
 
         min_distance = 10e9
@@ -49,7 +50,8 @@ class QueryHandler:
         print(query)
         query_tokens = query.split(" ")
         self.request_info = dict()
-        for token in query_tokens:
+        for t in query_tokens:
+            token = t.lower()
             if token in BANK_SERVICES:
                 return get_text_from_texts(BANK_SERVICES[token]), ""
             if token in CURRENCY_INDEX:
@@ -84,9 +86,9 @@ class QueryHandler:
         if "location" not in self.response:
             self.response["pending"].add(("location", self.find_offices))
             return ""
-        return str(get_closest_offices(get_offices(14),
+        return str(get_pretty_offices(get_closest_offices(get_offices(14),
                                        [self.response["location"].latitude,
-                                       self.response["location"].longitude]))
+                                       self.response["location"].longitude])))
 
     def find_atms(self, term):
         # Ask for location and find nearest offices
@@ -94,9 +96,9 @@ class QueryHandler:
         if "location" not in self.response:
             self.response["pending"].add(("location", self.find_atms))
             return ""
-        return str(get_closest_offices(get_atms(14),
+        return str(get_pretty_atms(get_closest_offices(get_atms(14),
                                        [self.response["location"].latitude,
-                                       self.response["location"].longitude]))
+                                       self.response["location"].longitude])))
 
     def currency_info(self, term):
         # Ask for the currency of interest (or get from query) and return the value
@@ -109,11 +111,11 @@ class QueryHandler:
         result = ""
         for p in self.response["pending"]:
             result += p[1](None)
-        if result != "":
-            if p[1] == self.find_offices:
-                result = get_pretty_offices(result)
-            elif p[1] == self.find_atms:
-                result = get_pretty_atms(result)
+        # if result != "":
+        #     if p[1] == self.find_offices:
+        #         result = get_pretty_offices(result)
+        #     elif p[1] == self.find_atms:
+        #         result = get_pretty_atms(result)
         self.response["pending"] = set()
         return result
 
