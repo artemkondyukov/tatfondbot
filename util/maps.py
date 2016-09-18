@@ -42,7 +42,9 @@ CITY_MAP = {
 CURRENCY_INDEX = {
     "bucks": "USD",
     "доллар": "USD",
+    "долларо": "USD",
     "даллар": "USD",
+    "далларо": "USD",
     "dollar": "USD",
     "бакс": "USD",
     "бач": "USD",
@@ -74,6 +76,7 @@ CURRENCY_INDEX = {
     "pt": "XPT",
     "xpt": "XPT",
     "платина": "XPT",
+    "платим": "XPT",
 }
 
 CURRENCY_NAMES = {
@@ -99,6 +102,7 @@ ACTION_INDEX = {
     "atm": "atm",
 
     "курс": "currency",
+    "сколько": "currency",
     "валюта": "currency",
 }
 
@@ -117,11 +121,13 @@ BANK_SERVICES = {
     "вкладов": "deposit.txt",
     "вклады": "deposit.txt",
     "вкладами": "deposit.txt",
+    "вкладам": "deposit.txt",
     "вкладах": "deposit.txt",
 
     "кредит": "credit.txt",
     "кредита": "credit.txt",
     "кредитом": "credit.txt",
+    "кредитам": "credit.txt",
     "кредиты": "credit.txt",
     "кредитах": "credit.txt",
     "кредитов": "credit.txt",
@@ -135,6 +141,9 @@ BANK_SERVICES = {
     "авто": "autocredit.txt",
     "автомобиль": "autocredit.txt",
     "автомобиля": "autocredit.txt",
+    "автомобилям": "autocredit.txt",
+    "автомобилем": "autocredit.txt",
+    "автомобилю": "autocredit.txt",
 
     "бизнес": "business.txt",
     "бизнесе": "business.txt",
