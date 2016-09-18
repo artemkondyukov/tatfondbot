@@ -1,4 +1,4 @@
-from Skype4Py import Skype4Py
+import Skype4Py
 
 skype = Skype4Py.Skype()
 
